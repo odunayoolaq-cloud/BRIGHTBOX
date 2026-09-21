@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BRIGHTBOX CUSTOM THEME | Premium Shopify Theme for E-Commerce Brands</title>
+<meta name="description" content="Build premium Shopify stores with BRIGHTBOX CUSTOM THEME — a customizable e-commerce theme featuring conversion-focused sections, advanced product pages, flexible layouts and powerful store features.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14150F; --paper:#FBFAF6; --paper2:#F3F1EA; --line:#E4E0D4;
+  --accent:#FF6A2C; --accent-ink:#3A2000; --dark:#14150F; --dark2:#1E2018;
+  --radius:16px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --paper:#FBFAF6; --paper2:#F3F1EA; }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;font-size:16px}
+h1,h2,h3,.display{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;line-height:1.05}
+img,svg{max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+@media(max-width:700px){section{padding:56px 0}}
+a{color:inherit;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;border:1px solid transparent;transition:transform .15s ease, background .2s ease}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{transform:translateY(-2px);background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink)}
+.eyebrow{font-size:13px;font-weight:600;color:#6B6656}
+.muted{color:#5B5747}
+.grid{display:grid;gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+
+.announce{background:var(--dark);color:var(--paper);text-align:center;font-size:13px;font-weight:500;padding:10px 16px;letter-spacing:.02em}
+.announce span{color:var(--accent)}
+
+header{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:19px}
+.navlinks{display:flex;gap:28px;font-size:14.5px;font-weight:500}
+.navlinks a:hover{color:var(--accent)}
+.navcta{display:flex;gap:10px;align-items:center}
+.hamb{display:none;background:none;border:none;font-size:22px;cursor:pointer}
+.mobmenu{display:none;flex-direction:column;gap:14px;padding:18px 24px 24px;border-bottom:1px solid var(--line)}
+.mobmenu.open{display:flex}
+@media(max-width:860px){.navlinks{display:none}.navcta .btn-ghost{display:none}.hamb{display:block}}
+
+.hero{padding:70px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.badge{display:inline-block;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid var(--line);border-radius:999px;margin-bottom:22px}
+.hero h1{font-size:clamp(38px,5.4vw,64px);margin-bottom:20px}
+.hero p.lead{font-size:18px;color:#3E3B30;max-width:52ch;margin-bottom:16px}
+.hero-benefits{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.pill{font-size:13px;font-weight:600;background:var(--paper2);border:1px solid var(--line);padding:8px 14px;border-radius:999px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.hero-fine{margin-top:14px;font-size:13px;color:#7A7566}
+
+.devicestack{position:relative;height:420px}
+.mock{position:absolute;border-radius:14px;border:1px solid var(--line);background:linear-gradient(160deg,#fff,var(--paper2));box-shadow:0 30px 60px -20px rgba(20,21,15,.25)}
+.mock-desk{width:96%;height:280px;top:0;left:0;padding:14px}
+.mock-phone{width:34%;height:230px;bottom:0;right:2%;border-radius:26px;padding:12px}
+.mock-bar{height:8px;width:40%;background:var(--line);border-radius:4px;margin-bottom:10px}
+.mock-block{background:var(--paper2);border-radius:8px;height:100%}
+.editnote{position:absolute;bottom:-30px;left:0;font-size:12px;color:#8A8570}
+
+.proof{background:var(--paper2);text-align:center}
+.proof h3{font-size:15px;font-weight:600;max-width:44ch;margin:0 auto 34px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat b{display:block;font-family:'Fraunces',serif;font-size:30px;font-weight:600}
+.stat span{font-size:13px;color:#6B6656}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+@media(max-width:800px){.steps{grid-template-columns:1fr}}
+.step .num{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:10px}
+.step h3{font-size:21px;margin-bottom:8px}
+
+.sec-head{max-width:640px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:14px}
+
+.feat-grid{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+.feat-grid .card h3{font-size:17px;margin:10px 0 6px}
+.icn{width:38px;height:38px;border-radius:10px;background:var(--paper2);display:flex;align-items:center;justify-content:center;font-size:17px}
+
+.ps-row{display:grid;grid-template-columns:1fr 1fr 2fr;gap:18px;align-items:center;padding:22px 0;border-top:1px solid var(--line)}
+.ps-row:last-child{border-bottom:1px solid var(--line)}
+@media(max-width:760px){.ps-row{grid-template-columns:1fr;gap:6px}}
+.ps-tag{font-size:12px;font-weight:700;letter-spacing:.02em}
+.ps-tag.problem{color:#A15A2E}
+.ps-tag.solution{color:#1E6B4F}
+.ps-title{font-family:'Fraunces',serif;font-size:18px}
+
+.dark-sec{background:var(--dark);color:var(--paper)}
+.dark-sec .muted{color:#B9B6A6}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+@media(max-width:760px){.compare{grid-template-columns:1fr}}
+.compare .card{background:#1E2018;border-color:#33352A;color:var(--paper)}
+.compare .line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #33352A;font-size:14.5px}
+.compare .total{font-family:'Fraunces',serif;font-size:24px;margin-top:14px}
+
+.buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+@media(max-width:900px){.buy-grid{grid-template-columns:1fr}}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.gallery .mock{position:static;height:150px}
+.gallery .mock:first-child{grid-column:1/3;height:220px}
+.stars{color:var(--accent);font-size:16px;margin-bottom:8px}
+.price-row{display:flex;align-items:baseline;gap:12px;margin:14px 0 6px}
+.price{font-family:'Fraunces',serif;font-size:44px}
+.compare-at{text-decoration:line-through;color:#9B9683;font-size:18px}
+.buy-points{list-style:none;margin:16px 0;font-size:14.5px}
+.buy-points li{padding:6px 0;color:#3E3B30}
+.buy-points li:before{content:"— ";color:var(--accent);font-weight:700}
+.licenses{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.lic{border:1px solid var(--line);border-radius:12px;padding:13px;cursor:pointer;font-size:14px;font-weight:600}
+.lic.active{border-color:var(--ink);background:var(--paper2)}
+.lic small{display:block;font-weight:500;color:#6B6656;margin-top:3px}
+.payicons{display:flex;gap:8px;margin-top:14px;font-size:12px;color:#8A8570}
+
+.faq-item{border-top:1px solid var(--line);padding:20px 0}
+.faq-item:last-child{border-bottom:1px solid var(--line)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:16px}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
+.faq-a p{padding-top:12px;color:#4C4839;font-size:14.5px;max-width:70ch}
+.faq-item.open .faq-a{max-height:200px}
+.faq-item.open .chevron{transform:rotate(45deg)}
+.chevron{transition:transform .2s ease;font-size:20px}
+
+.final-cta{background:var(--dark);color:var(--paper);text-align:center}
+.final-cta h2{font-size:clamp(30px,4.5vw,50px);margin-bottom:16px}
+.final-points{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:26px;font-size:13px;color:#B9B6A6;font-weight:600}
+
+footer{padding:56px 0 100px;font-size:13.5px;color:#6B6656}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+@media(max-width:700px){.foot-grid{grid-template-columns:1fr 1fr}}
+.foot-grid h4{font-size:13px;color:var(--ink);margin-bottom:12px}
+.foot-grid a{display:block;padding:4px 0}
+.foot-bottom{border-top:1px solid var(--line);margin-top:40px;padding-top:20px}
+
+.stickybar{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:none;z-index:60}
+.stickybar .btn{width:100%}
+@media(max-width:760px){.stickybar{display:block}body{padding-bottom:70px}}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="announce">BRIGHTBOX CUSTOM THEME — <span>ONE PAYMENT</span> · LIFETIME ACCESS · FUTURE UPDATES INCLUDED</div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">Brightbox</div>
+      <div class="navlinks">
+        <a href="#demo">Demo</a><a href="#features">Features</a><a href="#sections">Sections</a><a href="#included">What's Included</a><a href="#faq">FAQ</a>
+      </div>
+      <div class="navcta">
+        <a href="#demo" class="btn btn-ghost">View Demos</a>
+        <a href="#buy" class="btn btn-primary">Get The Theme</a>
+        <button class="hamb" onclick="document.getElementById('mobmenu').classList.toggle('open')">☰</button>
+      </div>
+    </nav>
+    <div class="mobmenu" id="mobmenu">
+      <a href="#demo">Demo</a><a href="#features">Features</a><a href="#sections">Sections</a><a href="#included">What's Included</a><a href="#faq">FAQ</a>
+      <a href="#buy" class="btn btn-primary">Get The Theme</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge">The Shopify theme built for modern e-commerce</span>
+      <h1>Turn your Shopify store into a real brand</h1>
+      <p class="lead">Build premium, conversion-focused Shopify stores without expensive page builders, complicated coding, or dozens of apps.</p>
+      <p class="lead">Brightbox gives you the sections, product-page elements, layouts and cart features you need to launch a professional e-commerce brand faster.</p>
+      <div class="hero-benefits">
+        <span class="pill">No code required</span>
+        <span class="pill">Conversion-focused sections</span>
+        <span class="pill">Lifetime theme updates</span>
+      </div>
+      <div class="hero-ctas">
+        <a href="#buy" class="btn btn-primary">Get Brightbox Theme</a>
+        <a href="#demo" class="btn btn-ghost">Explore Live Demos</a>
+      </div>
+      <p class="hero-fine">One-time purchase · Built for Shopify · Easy customization</p>
+    </div>
+    <div class="devicestack">
+      <div class="mock mock-desk"><div class="mock-bar"></div><div class="mock-block"></div></div>
+      <div class="mock mock-phone"><div class="mock-bar" style="width:60%"></div><div class="mock-block"></div></div>
+      <div class="editnote">[Admin: replace with real store screenshots]</div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="wrap">
+    <h3>Built for e-commerce operators who want more than a basic store</h3>
+    <div class="stats">
+      <div class="stat"><b>50+</b><span>Premium sections</span></div>
+      <div class="stat"><b>30+</b><span>Product blocks</span></div>
+      <div class="stat"><b>Multiple</b><span>Store layouts</span></div>
+      <div class="stat"><b>100%</b><span>Shopify editor</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">From store to brand in 3 steps</span>
+      <h2>How Brightbox works</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><h3>Choose your layout</h3><p class="muted">Start with one of Brightbox's professionally structured layouts.</p></div>
+      <div class="step"><div class="num">02</div><h3>Make it your brand</h3><p class="muted">Change colors, typography, images, products and content inside Shopify.</p></div>
+      <div class="step"><div class="num">03</div><h3>Launch, test & scale</h3><p class="muted">Publish your store, test layouts and improve the customer experience.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="included">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What's included</span>
+      <h2>Everything you need to build better stores</h2>
+    </div>
+    <div class="grid feat-grid">
+      <div class="card"><div class="icn">◆</div><h3>Conversion sections</h3><p class="muted">Flexible sections for products, offers and benefits.</p></div>
+      <div class="card"><div class="icn">▤</div><h3>Product page blocks</h3><p class="muted">Build stronger product pages directly inside Shopify.</p></div>
+      <div class="card"><div class="icn">▥</div><h3>Advanced cart</h3><p class="muted">Upsells, shipping progress and promotional elements.</p></div>
+      <div class="card"><div class="icn">◈</div><h3>Quantity breaks</h3><p class="muted">Multi-buy pricing and bundle-style offers.</p></div>
+      <div class="card"><div class="icn">✓</div><h3>Trust elements</h3><p class="muted">Reviews, guarantees, badges and shipping messaging.</p></div>
+      <div class="card"><div class="icn">▶</div><h3>Video & UGC sections</h3><p class="muted">Creator videos, demos and social content.</p></div>
+      <div class="card"><div class="icn">◐</div><h3>Pre-lander layouts</h3><p class="muted">Advertorial and educational pages before checkout.</p></div>
+      <div class="card"><div class="icn">✎</div><h3>Customization system</h3><p class="muted">Control typography, colors, spacing and branding.</p></div>
+      <div class="card"><div class="icn">▦</div><h3>Mobile-first design</h3><p class="muted">Optimized layouts across every screen size.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sections">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Your store shouldn't look like every other dropshipping store</span>
+      <h2>Brightbox gives you the tools to build something customers recognize as a real brand</h2>
+    </div>
+    <div class="ps-rows">
+      <div class="ps-row"><span class="ps-tag problem">Problem — Generic layout</span><span class="ps-tag solution">Solution — Branded design</span><span class="ps-title muted">Flexible typography, layouts, colors and sections build a more established brand experience.</span></div>
+      <div class="ps-row"><span class="ps-tag problem">Problem — Too many apps</span><span class="ps-tag solution">Solution — Built-in features</span><span class="ps-title muted">Essential conversion elements live inside the theme instead of stacking apps.</span></div>
+      <div class="ps-row"><span class="ps-tag problem">Problem — Expensive builders</span><span class="ps-tag solution">Solution — Native customization</span><span class="ps-title muted">Build and edit pages through Shopify's own familiar editor.</span></div>
+      <div class="ps-row"><span class="ps-tag problem">Problem — Weak product pages</span><span class="ps-tag solution">Solution — Conversion blocks</span><span class="ps-title muted">Benefits, reviews, guarantees, bundles and FAQs build stronger product pages.</span></div>
+      <div class="ps-row"><span class="ps-tag problem">Problem — Basic cart</span><span class="ps-tag solution">Solution — Advanced cart</span><span class="ps-title muted">Upsells, shipping progress and promotional messaging inside the cart.</span></div>
+      <div class="ps-row"><span class="ps-tag problem">Problem — Stores look identical</span><span class="ps-tag solution">Solution — Flexible system</span><span class="ps-title muted">Create different visual identities without rebuilding from scratch.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" style="color:#B9B6A6">Stop renting your store</span>
+      <h2>Replace multiple monthly tools with one powerful theme</h2>
+      <p class="muted">Example figures below — actual costs vary by store and are not guaranteed savings.</p>
+    </div>
+    <div class="compare">
+      <div class="card">
+        <h3 style="font-family:'Fraunces',serif;font-weight:400">The old way</h3>
+        <div class="line"><span>Page builder</span><span>$XX/mo</span></div>
+        <div class="line"><span>Cart upsell app</span><span>$XX/mo</span></div>
+        <div class="line"><span>Bundle app</span><span>$XX/mo</span></div>
+        <div class="line"><span>Landing page builder</span><span>$XX/mo</span></div>
+        <div class="line"><span>Section apps</span><span>$XX/mo</span></div>
+        <div class="total">$XXX+ / year</div>
+      </div>
+      <div class="card" style="border-color:var(--accent)">
+        <h3 style="font-family:'Fraunces',serif;font-weight:400">The Brightbox way</h3>
+        <p class="muted" style="margin-bottom:10px">One-time payment</p>
+        <div class="line"><span>Premium sections</span><span>✓</span></div>
+        <div class="line"><span>Advanced cart</span><span>✓</span></div>
+        <div class="line"><span>Quantity offers</span><span>✓</span></div>
+        <div class="line"><span>UGC sections</span><span>✓</span></div>
+        <div class="line"><span>Pre-landers</span><span>✓</span></div>
+        <div class="line"><span>Future updates</span><span>✓</span></div>
+        <a href="#buy" class="btn btn-primary" style="margin-top:18px;background:var(--accent);color:var(--accent-ink)">Get Brightbox</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="buy">
+  <div class="wrap buy-grid">
+    <div class="gallery">
+      <div class="mock"><div class="mock-bar"></div><div class="mock-block"></div></div>
+      <div class="mock"><div class="mock-block"></div></div>
+      <div class="mock"><div class="mock-block"></div></div>
+    </div>
+    <div>
+      <h2 style="font-size:30px;margin-bottom:6px">Brightbox Custom Theme</h2>
+      <div class="stars">★★★★★</div>
+      <p class="muted" style="margin-bottom:14px">Premium Shopify Theme</p>
+      <p class="muted">Everything you need to create modern, professional and conversion-focused Shopify stores — without relying on expensive page builders.</p>
+      <div class="price-row"><span class="price" id="priceOut">$249</span><span class="compare-at">$399</span></div>
+      <ul class="buy-points">
+        <li>One-time payment</li><li>No monthly theme subscription</li><li>Lifetime access</li><li>Future v1 updates included</li>
+      </ul>
+      <div class="licenses" id="licenses">
+        <div class="lic active" data-price="249" onclick="selectLic(this)">1 Store License<small>Single store</small></div>
+        <div class="lic" data-price="349" onclick="selectLic(this)">3 Store Licenses<small>Growing brands</small></div>
+        <div class="lic" data-price="499" onclick="selectLic(this)">5 Store Licenses<small>Multi-brand</small></div>
+        <div class="lic" data-price="899" onclick="selectLic(this)">Agency / Unlimited<small>For agencies</small></div>
+      </div>
+      <a href="#" class="btn btn-primary" style="width:100%">Get Instant Access</a>
+      <p class="hero-fine" style="margin-top:10px">Secure checkout · Instant digital delivery</p>
+      <div class="payicons">Visa · Mastercard · PayPal · Shop Pay</div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:800px">
+    <div class="sec-head"><h2>Frequently asked questions</h2></div>
+    <div id="faqlist">
+      <div class="faq-item"><div class="faq-q">What is Brightbox Custom Theme?<span class="chevron">+</span></div><div class="faq-a"><p>A premium Shopify theme with conversion-focused sections, product page blocks and an advanced cart, built for modern e-commerce brands.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Do I need coding experience?<span class="chevron">+</span></div><div class="faq-a"><p>No. Everything is customizable through the standard Shopify editor.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Does it work for one-product stores and general stores?<span class="chevron">+</span></div><div class="faq-a"><p>Yes. Layouts support one-product, general, and branded store formats.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How many stores can I use my license on?<span class="chevron">+</span></div><div class="faq-a"><p>This depends on the license tier you purchase, from a single store up to unlimited agency use.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Will I receive future updates?<span class="chevron">+</span></div><div class="faq-a"><p>Yes, all v1 updates are included at no extra cost.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Is this a recurring subscription?<span class="chevron">+</span></div><div class="faq-a"><p>No. Brightbox is a one-time purchase.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Do you offer refunds?<span class="chevron">+</span></div><div class="faq-a"><p>[Admin: insert your actual refund policy here before launch.]</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#B9B6A6">Ready to upgrade your store?</span>
+    <h2>Build the store your product deserves</h2>
+    <p class="muted" style="max-width:52ch;margin:0 auto">Stop settling for generic layouts. Build a cleaner, stronger and more professional Shopify experience with Brightbox Custom Theme.</p>
+    <div class="hero-ctas" style="justify-content:center;margin-top:26px">
+      <a href="#buy" class="btn btn-primary" style="background:var(--accent);color:var(--accent-ink)">Get Brightbox Custom Theme</a>
+      <a href="#demo" class="btn btn-ghost" style="border-color:#33352A">View Demos</a>
+    </div>
+    <div class="final-points"><span>One-time purchase</span><span>Instant access</span><span>Future updates</span><span>Shopify ready</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo" style="margin-bottom:10px">Brightbox</div>
+      <p class="muted">Premium Shopify tools built for modern e-commerce brands.</p>
+    </div>
+    <div><h4>Navigate</h4><a href="#">Home</a><a href="#features">Features</a><a href="#demo">Demo Stores</a><a href="#faq">FAQ</a></div>
+    <div><h4>Legal</h4><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Refund Policy</a><a href="#">License Agreement</a></div>
+    <div><h4>Social</h4><a href="#">TikTok</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Discord</a></div>
+  </div>
+  <div class="wrap foot-bottom">
+    <p>© Brightbox Custom Theme. All rights reserved.</p>
+    <p style="margin-top:6px">Shopify is a trademark of Shopify Inc. Brightbox Custom Theme is an independent product and is not affiliated with or endorsed by Shopify Inc.</p>
+  </div>
+</footer>
+
+<div class="stickybar"><a href="#buy" class="btn btn-primary">Get Brightbox Theme</a></div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    document.querySelectorAll('.faq-item').forEach(i=>{if(i!==item)i.classList.remove('open')});
+    item.classList.toggle('open');
+  });
+});
+function selectLic(el){
+  document.querySelectorAll('.lic').forEach(l=>l.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('priceOut').textContent='$'+el.dataset.price;
+}
+</script>
+</body>
+</html>
