@@ -1,60 +1,120 @@
-# Brightbox Custom Theme — Sales Website
+# BRIGHTBOX ECOM — Landing Page
 
-A single-page, self-contained marketing site for the "Brightbox Custom Theme" Shopify theme product.
+A static, single-page website for the BRIGHTBOX ECOM e-commerce mentorship brand.
 
 ## What's in this project
 
 ```
-brightbox-website/
-├── index.html   ← the entire website (HTML, CSS, and JS in one file)
-└── README.md    ← this file
+brightbox-ecom/
+├── index.html              Main page (all sections, semantic HTML)
+├── assets/
+│   ├── css/style.css       All styling (dark luxury theme, responsive, animations)
+│   └── js/script.js        Nav, mobile menu, carousel, FAQ accordion, form logic
+└── README.md                This file
 ```
 
-That's it. There is no build step, no package manager, and no framework — `index.html` is the whole site.
+There are no build tools, frameworks, or package managers involved — this is
+plain HTML/CSS/JS. You can open `index.html` directly in a browser, or deploy
+the folder as-is to any static host.
 
-## Dependencies
+## External dependency
 
-The page only loads two things from outside the file, both from Google Fonts:
+The page loads **Google Fonts** (Fraunces + Inter) from
+`fonts.googleapis.com` / `fonts.gstatic.com` via a `<link>` tag in the
+`<head>` of `index.html`. This requires an internet connection at runtime,
+which is standard for essentially all production websites. If you need a
+fully offline-capable build, download the font files and self-host them,
+then update the `<link>` tags and the `font-family` values in
+`assets/css/style.css`.
 
-- `https://fonts.googleapis.com/css2?family=Fraunces...&family=Inter...`
-- The underlying font files from `https://fonts.gstatic.com`
+No other external services, CDNs, or libraries are used — no jQuery, no
+React, no analytics scripts. Nothing else to install.
 
-Everything else — layout, colors, buttons, the FAQ accordion, the license price selector, the mobile menu — is plain HTML/CSS/vanilla JavaScript inside `index.html`. There are no npm packages, no CDNs for JS libraries, and no server-side code, so there is nothing else to install.
+## Deploying
 
-If you need the site to work with zero external requests (e.g. a fully offline/air-gapped environment), download the two font files from Google Fonts, place them in a `fonts/` folder next to `index.html`, and swap the `<link>` tags in `<head>` for a local `@font-face` rule. This isn't necessary for normal web hosting.
+Any static host works. A few common options:
 
-## Deploying it
+**Netlify / Vercel (drag-and-drop or CLI)**
+- Drag the `brightbox-ecom` folder into the Netlify or Vercel dashboard, or
+- Run `netlify deploy` / `vercel` from inside this folder.
 
-Because it's a static file, you can host it almost anywhere:
+**GitHub Pages**
+1. Push this folder to a GitHub repository.
+2. In the repo settings, enable GitHub Pages and point it at the branch/root.
 
-- **Netlify / Vercel / Cloudflare Pages**: drag-and-drop the `brightbox-website` folder (or connect a git repo containing it) — no build command needed.
-- **GitHub Pages**: push this folder to a repo and enable Pages, pointing at the root.
-- **Any static host / S3 bucket / shared hosting**: upload `index.html` to the web root so it's served at `/`.
+**Any traditional web host (cPanel, FTP, etc.)**
+- Upload the contents of this folder to your `public_html` (or equivalent)
+  directory, keeping the `assets/` folder structure intact.
 
-## Before you launch — content to replace
+## Before going live — required configuration
 
-The page ships with clearly-marked placeholder content. Search `index.html` for these before going live:
+### 1. WhatsApp and email destinations
+Open `assets/js/script.js` and find these two lines near the top of the
+`submit` handler:
 
-| What | Where | Look for |
-|---|---|---|
-| Screenshots / mockups | Hero, purchase gallery | `.mock` blocks and the `[Admin: replace with real store screenshots]` note |
-| Pricing | Purchase section | `id="priceOut"`, the `data-price` attributes on `.lic` license cards, and the compare-at price |
-| Cost comparison figures | "Stop renting your store" section | `$XX/mo` and `$XXX+ / year` placeholders |
-| Refund policy | FAQ | `[Admin: insert your actual refund policy here before launch.]` |
-| Testimonials, demo store links, video embed, changelog | Not included in this build — see note below | — |
-| Checkout links | `Get Instant Access` / `Get Brightbox...` buttons | currently `href="#"` or `#buy` — point these at your real checkout |
-| Legal pages, social links | Footer | currently placeholder `#` links |
+```js
+var DESTINATION_WHATSAPP_NUMBER = '10000000000';
+var DESTINATION_EMAIL = 'apply@brightboxecom.com';
+```
 
-## Known gaps from the original brief
+Replace them with:
+- The real WhatsApp number that should receive applications, in international
+  format with no `+`, spaces, or dashes (e.g. `447911123456`).
+- The real destination email address.
 
-This build focuses on the core conversion path (hero → proof → features → problem/solution → pricing → FAQ → final CTA) to keep the file lean and dependency-free. Not included, and safe to add as separate sections later:
+**Note on email delivery:** the form currently prepares a `mailto:` link as a
+fallback. This opens the visitor's own email client — it does not silently
+send an email from your server. For reliable, automatic email delivery
+without relying on the visitor's device, connect the form to a backend
+endpoint or a form service (e.g. your own server route, Formspree, Getform,
+or similar), and POST the form data there instead. The `applyForm` submit
+handler in `script.js` is the place to add that `fetch()` call.
 
-- Embedded video / "See Brightbox in Action" player
-- Demo store showcase carousel
-- Advanced cart drawer visual showcase
-- Full product-page block library and 50+ section library grids
-- Pre-lander/advertorial preview cards
-- Testimonials and "Built with Brightbox" results grid
-- Version/changelog module
+### 2. Replace placeholder proof content
+Every image slot in the Results carousel and the Sales Proof grid is a
+clearly labeled placeholder (dark panel with "PLACEHOLDER — REPLACE WITH…"
+text) — nothing fabricated is shown live. To swap in real proof:
 
-Let me know if you'd like any of these built out — each can be added as its own `<section>` following the same CSS classes already defined in `index.html` (`.card`, `.sec-head`, `.grid`, etc.), so the visual style stays consistent.
+- In `index.html`, find each `.slide-media` block (Results carousel) and
+  `.proof-shot` block (Sales Proof grid).
+- Replace the placeholder `<div class="placeholder-tag">…</div>` with an
+  `<img src="assets/img/your-screenshot.jpg" alt="...">` tag, or set the
+  placeholder div's background to your image via CSS.
+- Create an `assets/img/` folder for your image files and reference them
+  with relative paths (e.g. `assets/img/sale-01.jpg`).
+- Update the caption text next to each proof item.
+
+### 3. Replace placeholder statistics
+In the "The Numbers Tell The Story" section of `index.html`, replace:
+
+```html
+$XX,XXX+   →  your verified total sales figure
+XXX+       →  your verified order count
+XX+        →  your verified stores-built count
+XX+        →  your verified students/clients count
+```
+
+Only use figures you can verify — the design and copy are built around
+transparency, not exaggerated claims.
+
+### 4. Optional: favicon
+No custom favicon is included. Add a `favicon.ico` (or `favicon.png`) file
+to the project root and reference it in `index.html`'s `<head>`:
+
+```html
+<link rel="icon" href="favicon.ico">
+```
+
+## Accessibility & performance notes
+
+- Semantic HTML throughout (`header`, `main`, `section`, `footer`, proper
+  heading hierarchy with a single `<h1>`).
+- Respects `prefers-reduced-motion`.
+- No render-blocking scripts beyond the Google Fonts stylesheet.
+- Form fields use native validation (`required`, `type="email"`, etc.).
+
+## Support
+
+This is a static hand-off project — there's no ongoing runtime dependency
+on any particular platform. Any developer familiar with HTML/CSS/JS can
+maintain or extend it.
