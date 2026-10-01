@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BrightBox — Advanced Reselling Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#f5f6f8;--fg:#0a0a0b;--mut:#5f6570;--line:#e3e5ea;--card:#fff;--ac:#1f6bff;--acs:#1f6bff14;--nav:#ffffffcc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#050506;--bg2:#0d0e10;--fg:#f4f5f7;--mut:#9aa0ab;--line:#222428;--card:#101114;--ac:#3d85ff;--acs:#3d85ff1c;--nav:#050506cc}}
+:root[data-theme="dark"]{--bg:#050506;--bg2:#0d0e10;--fg:#f4f5f7;--mut:#9aa0ab;--line:#222428;--card:#101114;--ac:#3d85ff;--acs:#3d85ff1c;--nav:#050506cc}
+*,*:before,*:after{box-sizing:inherit}html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 Inter,system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}.w{max-width:1120px;margin:0 auto;padding:0 22px}
+section{padding:88px 0}.alt{background:var(--bg2)}
+h1,h2,h3{margin:0;letter-spacing:-.03em;line-height:1.08}
+h1{font-size:clamp(38px,7.4vw,76px);font-weight:800}h2{font-size:clamp(28px,4.6vw,48px);font-weight:700}h3{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+p{margin:0}.eye{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--ac);text-transform:uppercase;margin-bottom:16px}
+.lead{color:var(--mut);font-size:clamp(16px,2vw,19px);max-width:640px;margin-top:20px}.head{margin-bottom:48px;max-width:760px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:999px;font:600 15px Inter,sans-serif;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn.p{background:var(--ac);color:#fff}.btn.p:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px var(--ac)}
+.btn.s{border-color:var(--line);background:transparent;color:var(--fg)}.btn.s:hover{background:var(--acs);border-color:var(--ac)}
+nav{position:sticky;top:0;z-index:50;background:var(--nav);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.nb{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;letter-spacing:-.04em;font-size:20px;display:flex;align-items:center;gap:9px}.logo i{width:22px;height:22px;border-radius:6px;background:var(--ac);display:block;position:relative}.logo i:after{content:"";position:absolute;inset:6px;border-radius:2px;background:var(--bg)}
+.links{display:flex;gap:28px;font-size:14px;color:var(--mut)}.links a:hover{color:var(--fg)}.nb .btn{padding:9px 18px;font-size:14px}
+.ham{display:none;background:none;border:0;width:40px;height:40px;cursor:pointer;color:var(--fg)}
+.ham span{display:block;width:20px;height:2px;background:currentColor;margin:5px auto;transition:.25s}
+.menu{display:none;flex-direction:column;padding:8px 22px 22px;gap:4px;border-top:1px solid var(--line)}.menu a{padding:12px 0;border-bottom:1px solid var(--line)}.menu.open{display:flex}
+@media(max-width:860px){.links,.nb>.btn{display:none}.ham{display:block}}
+.hero{padding:80px 0 72px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;width:640px;height:640px;right:-200px;top:-220px;background:radial-gradient(circle,var(--acs),transparent 68%);pointer-events:none}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.trust{font-size:14px;color:var(--mut);margin-top:22px}
+.dash{margin-top:56px;border:1px solid var(--line);border-radius:20px;background:var(--card);box-shadow:0 30px 80px -40px #0006;overflow:hidden}
+.dtop{display:flex;gap:6px;padding:14px 18px;border-bottom:1px solid var(--line)}.dtop b{width:10px;height:10px;border-radius:50%;background:var(--line)}.dtop span{margin-left:auto;font-size:12px;color:var(--mut)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:28px 20px 12px;position:relative}
+.node{text-align:center;padding:0 8px;position:relative}.node:not(:last-child):after{content:"";position:absolute;top:26px;left:calc(50% + 34px);right:calc(-50% + 34px);height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px)}
+.node:not(:last-child):before{content:"";position:absolute;top:23px;left:calc(50% + 34px);width:8px;height:8px;border-radius:50%;background:var(--ac);z-index:2;animation:pulse 3.2s linear infinite;animation-delay:calc(var(--i)*.8s)}
+@keyframes pulse{0%{transform:translateX(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateX(calc(100% + 90px));opacity:0}}
+.ic{width:52px;height:52px;border-radius:14px;margin:0 auto 12px;background:var(--acs);border:1px solid var(--line);display:grid;place-items:center;color:var(--ac);font-weight:700;position:relative;z-index:3}
+.node small{display:block;color:var(--mut);font-size:12px}.node strong{font-size:14px}
+.mrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:12px 20px 24px}.m{border:1px solid var(--line);border-radius:12px;padding:14px;font-size:12px;color:var(--mut)}.m b{display:block;font-size:14px;color:var(--fg);margin-top:2px}.m i{display:block;height:6px;border-radius:3px;background:var(--acs);margin-top:10px;overflow:hidden}.m i:after{content:"";display:block;height:100%;width:var(--w);background:var(--ac);border-radius:3px;animation:grow 2.2s ease-out both}
+@keyframes grow{from{width:0}}
+@media(max-width:640px){.flow{grid-template-columns:1fr 1fr;row-gap:24px}.node:after,.node:before{display:none!important}.mrow{grid-template-columns:1fr}}
+.cmp{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:8px}@media(max-width:760px){.cmp{grid-template-columns:1fr}}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}@media(max-width:900px){.g3{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;transition:transform .25s,border-color .25s}.card:hover{transform:translateY(-4px);border-color:var(--ac)}
+.card p{color:var(--mut);margin-top:10px;font-size:15px}.num{font-size:13px;font-weight:600;color:var(--ac);margin-bottom:18px;display:block}
+.old h3,.new h3{margin-bottom:18px;font-size:20px}.old{opacity:.9}.new{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac),0 24px 60px -30px var(--ac)}
+.cmp ul{list-style:none;margin:0;padding:0}.cmp li{padding:11px 0;border-top:1px solid var(--line);display:flex;gap:12px;font-size:15px}.old li{color:var(--mut)}.old li:before{content:"×";color:var(--mut)}.new li:before{content:"✓";color:var(--ac);font-weight:700}
+.hl{margin-top:28px;text-align:center;font-size:clamp(18px,2.6vw,26px);font-weight:600;letter-spacing:-.02em}.hl span{color:var(--ac)}
+.tl{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:s}@media(max-width:900px){.tl{grid-template-columns:1fr}}
+.st{border-top:2px solid var(--line);padding-top:20px;position:relative}.st:before{content:"";position:absolute;top:-2px;left:0;height:2px;width:0;background:var(--ac);transition:width 1s ease .2s}.st.in:before{width:100%}
+.st p{color:var(--mut);font-size:15px;margin-top:8px}
+.shot{aspect-ratio:16/10;border:1px dashed var(--line);border-radius:12px;background:var(--bg2);display:grid;place-items:center;color:var(--mut);font-size:13px;text-align:center;padding:12px;overflow:hidden;margin-bottom:20px}.shot img{width:100%;height:100%;object-fit:cover}
+.cs dl{margin:16px 0 20px;font-size:14px}.cs dt{font-weight:600;margin-top:10px}.cs dd{margin:2px 0 0;color:var(--mut)}.tag{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--ac)}
+.q h3{margin-bottom:16px}.q ul{list-style:none;margin:0;padding:0}.q li{padding:10px 0;border-top:1px solid var(--line);color:var(--mut);font-size:15px;display:flex;gap:10px}.q.y li:before{content:"✓";color:var(--ac);font-weight:700}.q.n li:before{content:"–"}
+form{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,40px)}.fg{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:620px){.fg{grid-template-columns:1fr}}
+.f{display:flex;flex-direction:column;gap:6px}.f.full{grid-column:1/-1}label{font-size:13px;font-weight:500}
+input,select,textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%;transition:border .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 4px var(--acs)}textarea{min-height:110px;resize:vertical}
+.ok{display:none;text-align:center;padding:48px 10px}.ok .ic{margin-bottom:20px}.err{color:#e5484d;font-size:14px;margin-top:12px;display:none}
+.big{text-align:center;padding:110px 0}.big h2{font-size:clamp(32px,6vw,64px)}.big h2 span{color:var(--ac)}.big .lead{margin:22px auto 0}.big .cta{justify-content:center}
+details{border-top:1px solid var(--line);padding:20px 0}details:last-child{border-bottom:1px solid var(--line)}summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}summary::-webkit-details-marker{display:none}summary:after{content:"+";color:var(--ac);font-size:22px;line-height:1}details[open] summary:after{content:"–"}details p{color:var(--mut);margin-top:12px;max-width:680px}
+footer{border-top:1px solid var(--line);padding:56px 0 40px;font-size:14px;color:var(--mut)}.fc{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}@media(max-width:760px){.fc{grid-template-columns:1fr 1fr}.fc>:first-child{grid-column:1/-1}}
+footer h4{margin:0 0 12px;color:var(--fg);font-size:13px}footer a{display:block;padding:4px 0}footer a:hover{color:var(--fg)}.comp{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;max-width:760px}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+.strip{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:8px;margin-bottom:20px}.strip img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:10px;border:1px solid var(--line);cursor:zoom-in;transition:transform .3s}.strip img:hover{transform:scale(1.02)}
+.cs .btn{margin-top:auto}.cs{display:flex;flex-direction:column}.chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}.chips span{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--mut)}
+.wall{columns:4 190px;column-gap:14px;margin-top:64px}.wall figure{margin:0 0 14px;break-inside:avoid}.wall img{width:100%;display:block;border-radius:14px;border:1px solid var(--line);cursor:zoom-in}.wall figcaption{font-size:12px;color:var(--mut);margin-top:6px}
+.lb{position:fixed;inset:0;z-index:100;background:#000e;display:none;overflow:auto;padding:calc(56px + env(safe-area-inset-top,0px)) 16px 40px;-webkit-overflow-scrolling:touch}.lb.on{display:block}.lb .row{display:flex;gap:14px;max-width:1100px;margin:0 auto;overflow-x:auto;scroll-snap-type:x mandatory;justify-content:safe center}.lb img{height:min(78vh,820px);width:auto;border-radius:14px;scroll-snap-align:center;flex:none}.lb button{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:16px;width:42px;height:42px;border-radius:50%;border:0;background:#fff;color:#000;font-size:22px;cursor:pointer}.lb p{color:#fff;text-align:center;margin-top:18px;font-weight:600}
+
+.mq{overflow:hidden;margin-top:8px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.mt{display:flex;align-items:center;width:max-content;animation:mq 70s linear infinite}.mq.r .mt{animation-direction:reverse;animation-duration:80s}.mq:hover .mt,.mq:active .mt{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mt figure{margin:0 16px 0 0;flex:none}.mt img{height:clamp(300px,56vw,460px);width:auto;display:block;border-radius:14px;border:1px solid var(--line);background:#fff;cursor:zoom-in}.mt figcaption{width:0;min-width:100%;font-size:12px;color:var(--mut);margin-top:8px}
+@media(prefers-reduced-motion:reduce){.mq{overflow-x:auto}}
+.lb img{height:auto;width:auto;max-height:min(78vh,820px)}
+
+.hbg{display:grid;grid-template-columns:1.05fr .95fr}.hs{margin:0;background:#000}.hs img{width:100%;display:block;cursor:zoom-in}.hs figcaption{font-size:12px;color:#9aa0ab;padding:10px 16px;background:#000}
+.hf{padding:28px;display:flex;flex-direction:column;justify-content:center}.hn{display:flex;gap:14px;align-items:flex-start;padding:14px 0;position:relative}.hn:not(:last-child):before{content:"";position:absolute;left:21px;top:58px;bottom:-14px;width:2px;background:repeating-linear-gradient(var(--line) 0 6px,transparent 6px 12px)}
+.hn .ic{margin:0;flex:none;width:44px;height:44px;animation:glow 4s ease-in-out infinite;animation-delay:calc(var(--i)*.9s)}@keyframes glow{0%,100%{box-shadow:0 0 0 0 transparent}20%{box-shadow:0 0 0 6px var(--acs);border-color:var(--ac)}}
+.hn strong{display:block;font-size:15px}.hn small{color:var(--mut);font-size:13px}.hn>div:last-child{padding-top:2px}
+@media(max-width:760px){.hbg{grid-template-columns:1fr}.hf{padding:20px}}
+.gs{padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.gg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}@media(max-width:860px){.gg{grid-template-columns:repeat(2,1fr)}}
+.sc{padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--card)}.sc b{display:block;font-size:clamp(26px,4vw,40px);letter-spacing:-.03em;font-weight:800;line-height:1.1}.sc small{display:block;color:var(--mut);font-size:13px;margin-top:6px}
+.up{display:inline-block;margin-top:12px;font-size:13px;font-weight:700;color:#12a150;background:#12a15016;border-radius:999px;padding:4px 10px}.gs .note{font-size:12px;color:var(--mut);margin-top:16px}
+</style></head><body>
+<nav><div class="w nb"><a href="#top" class="logo"><i></i>BrightBox</a>
+<div class="links"><a href="#solutions">Solutions</a><a href="#how">How It Works</a><a href="#results2">Results</a><a href="#cases">Case Studies</a><a href="#why">Why BrightBox</a><a href="#faq">FAQ</a></div>
+<a href="#apply" class="btn p">Apply Now</a><button class="ham" id="ham" aria-label="Menu"><span></span><span></span></button></div>
+<div class="menu" id="menu"><a href="#solutions">Solutions</a><a href="#how">How It Works</a><a href="#results2">Results</a><a href="#cases">Case Studies</a><a href="#why">Why BrightBox</a><a href="#faq">FAQ</a><a href="#apply" class="btn p" style="margin-top:14px">Apply Now</a></div></nav>
+
+<header class="hero" id="top"><div class="w">
+<div class="eye rv">Advanced Reselling Infrastructure</div>
+<h1 class="rv" style="max-width:900px">Your Reselling Business. Without The Inventory Headache.</h1>
+<p class="lead rv">BrightBox builds the ecommerce infrastructure behind your reselling operation so you can sell through your own storefront, connect with verified suppliers and automate the repetitive parts of the business.</p>
+<div class="cta rv"><a href="#apply" class="btn p">Apply For BrightBox</a><a href="#how" class="btn s">See How It Works</a></div>
+<p class="trust rv">Built for experienced resellers ready to scale beyond traditional marketplace selling.</p>
+<div class="dash rv"><div class="dtop"><b></b><b></b><b></b><span>Live store dashboard</span></div><div class="hbg"><figure class="hs"><img src="images/proof-07.jpg" alt="Total sales $38,341 · 962 orders · last 30 days" onclick="openLB(['images/proof-07.jpg'],'Total sales $38,341 · 962 orders · last 30 days')"><figcaption>Total sales $38,341 · 962 orders · last 30 days</figcaption></figure>
+<div class="hf"><div class="hn" style="--i:0"><div class="ic">01</div><div><strong>Customer Order</strong><small>Placed on your store</small></div></div><div class="hn" style="--i:1"><div class="ic">02</div><div><strong>Shopify Store</strong><small>Your storefront, your customer</small></div></div><div class="hn" style="--i:2"><div class="ic">03</div><div><strong>Supplier</strong><small>Verified connection</small></div></div><div class="hn" style="--i:3"><div class="ic">04</div><div><strong>Fulfillment</strong><small>Handled by the supplier</small></div></div></div></div></div>
+</div></header>
+
+<section class="gs"><div class="w"><div class="eye rv" style="margin-bottom:20px">Store Results</div><div class="gg"><div class="sc rv"><b class="cnt" data-to="115802" data-pre="$" data-suf="" data-dec="0">$115802</b><small>Total sales · 90 days</small><span class="up">▲ <span class="cnt" data-to="63" data-pre="+" data-suf="%" data-dec="0">+63%</span></span></div><div class="sc rv"><b class="cnt" data-to="87662" data-pre="$" data-suf="" data-dec="0">$87662</b><small>Total sales · 30 days</small><span class="up">▲ <span class="cnt" data-to="142" data-pre="+" data-suf="%" data-dec="0">+142%</span></span></div><div class="sc rv"><b class="cnt" data-to="106.83" data-pre="£" data-suf="K" data-dec="2">£106.83K</b><small>Total sales · 7 days, Mar 2024</small><span class="up">▲ <span class="cnt" data-to="37" data-pre="+" data-suf="%" data-dec="0">+37%</span></span></div><div class="sc rv"><b class="cnt" data-to="6045" data-pre="$" data-suf="" data-dec="0">$6045</b><small>Total sales · Aug 21 – Sep 3, 2026</small><span class="up">▲ <span class="cnt" data-to="146" data-pre="+" data-suf="%" data-dec="0">+146%</span></span></div></div><p class="note rv">Figures and growth are taken from individual store dashboards, compared with each dashboard’s previous period. Examples only, not typical results.</p></div></section>
+
+<section class="alt"><div class="w">
+<div class="head rv"><div class="eye">The Problem</div><h2>Reselling works. The old way of doing it doesn’t scale forever.</h2><p class="lead">Buy stock. Store it. List it. Ship it. Repeat. Every sale adds more operational weight.</p></div>
+<div class="grid g2">
+<div class="card rv"><span class="num">01</span><h3>Your Money Gets Stuck In Stock</h3><p>Buying inventory upfront means your cash is sitting on shelves instead of working for the business.</p></div>
+<div class="card rv"><span class="num">02</span><h3>You’re Managing Everything Manually</h3><p>Listings, inventory, orders and customer updates can quickly become a full-time job.</p></div>
+<div class="card rv"><span class="num">03</span><h3>You’re Dependent On Marketplaces</h3><p>Third-party marketplaces control the customer relationship and can restrict or remove listings according to their policies.</p></div>
+<div class="card rv"><span class="num">04</span><h3>Scaling Means More Operational Work</h3><p>More sales can mean more stock, more storage, more orders and more headaches.</p></div></div>
+<p class="hl rv" style="margin-top:48px"><span>BrightBox changes the infrastructure behind the business.</span></p></div></section>
+
+<section><div class="w">
+<div class="head rv"><div class="eye">The Shift</div><h2>Same skills. Different infrastructure.</h2><p class="lead">Stop building your entire business on someone else’s marketplace. Build an ecommerce storefront you control.</p></div>
+<div class="cmp">
+<div class="card old rv"><h3>Traditional Reselling</h3><ul><li>Buy inventory</li><li>Store inventory</li><li>Create listings</li><li>Manage marketplace accounts</li><li>Process orders manually</li><li>Track stock manually</li><li>Repeat</li></ul></div>
+<div class="card new rv"><h3>Advanced Reselling With BrightBox</h3><ul><li>Own your Shopify storefront</li><li>Connect verified suppliers</li><li>Import products</li><li>Automate inventory workflows</li><li>Automate order workflows</li><li>Automate tracking and customer updates where supported</li><li>Focus on marketing and growth</li></ul></div></div>
+<p class="hl rv">Less inventory risk. Less repetitive work. <span>More room to scale.</span></p></div></section>
+
+<section id="results"><div class="w"><div class="head rv"><div class="eye">Results</div><h2>Real dashboards. Real stores.</h2><p class="lead">Screenshots supplied by the business owner, shown at full size. Tap any screenshot to open it.</p></div></div>
+<div class="mq rv"><div class="mt" id="mt1"></div></div><div class="w"></div></section>
+
+<section class="alt" id="solutions"><div class="w">
+<div class="head rv"><div class="eye">What BrightBox Builds</div><h2>We don’t just give you a store. We build the system around it.</h2></div>
+<div class="grid g3">
+<div class="card rv"><h3>Shopify Store</h3><p>A professionally designed ecommerce storefront built around your products, positioning and target market.</p></div>
+<div class="card rv"><h3>Verified Supplier Connection</h3><p>Connect your store with vetted supplier options so you don’t have to build your operation around holding inventory yourself.</p></div>
+<div class="card rv"><h3>Product Infrastructure</h3><p>Products, pricing, images, descriptions and catalog workflows configured for the store.</p></div>
+<div class="card rv"><h3>Automated Workflows</h3><p>Automate as much of the repetitive ecommerce workflow as supported, including product and inventory synchronization and order workflow processes.</p></div>
+<div class="card rv"><h3>Conversion Setup</h3><p>Product pages and customer journeys designed to turn traffic into purchases.</p></div>
+<div class="card rv"><h3>Launch Infrastructure</h3><p>The complete system prepared so you can focus on traffic, content, marketing and growth.</p></div></div>
+<p class="trust rv" style="margin-top:28px">BrightBox builds the infrastructure. Physical fulfillment is handled by your selected supplier or fulfillment partner, not by BrightBox.</p></div></section>
+
+<section id="how"><div class="w">
+<div class="head rv"><div class="eye">How It Works</div><h2>Five steps from application to launch.</h2></div>
+<div class="tl">
+<div class="st rv"><span class="num">01</span><h3>Apply</h3><p>Tell us about your current reselling operation, products, experience and goals.</p></div>
+<div class="st rv"><span class="num">02</span><h3>Strategy</h3><p>BrightBox reviews your operation and determines the infrastructure required.</p></div>
+<div class="st rv"><span class="num">03</span><h3>Build</h3><p>Our team builds your Shopify storefront, product infrastructure, supplier connection and automation workflows.</p></div>
+<div class="st rv"><span class="num">04</span><h3>Launch</h3><p>Your ecommerce operation goes live with the infrastructure prepared around your business.</p></div>
+<div class="st rv"><span class="num">05</span><h3>Scale</h3><p>You focus on traffic, marketing and sales while the infrastructure handles the repetitive operational work.</p></div></div>
+<div class="cta rv" style="align-items:center;margin-top:48px"><h3 style="font-size:22px;margin-right:12px">Ready To Upgrade Your Reselling Operation?</h3><a href="#apply" class="btn p">Apply Now</a></div></div></section>
+
+<section class="alt" id="cases"><div class="w">
+<div class="head rv"><div class="eye">Case Studies</div><h2>Built for businesses that want to move differently.</h2><p class="lead">Live Shopify stores built on the BrightBox model. Tap any store to see it up close.</p></div>
+<div class="grid g2" id="csgrid"></div><div class="head rv" style="margin:72px 0 0"><div class="eye">Proof Wall</div><h2 style="font-size:clamp(24px,3.6vw,38px)">Every store. Every screen.</h2></div><div class="wall" id="wall"></div></div></section><div class="lb" id="lb"><button aria-label="Close">×</button><div class="row" id="lbr"></div><p id="lbt"></p></div>
+
+<section id="why"><div class="w">
+<div class="head rv"><div class="eye">Why BrightBox</div><h2>Built around the reseller, not the marketplace.</h2></div>
+<div class="grid g3">
+<div class="card rv"><h3>Own Your Storefront</h3><p>Build an ecommerce presence that belongs to your business instead of relying entirely on a third-party marketplace.</p></div>
+<div class="card rv"><h3>Stop Tying Up Capital</h3><p>Move away from a model that requires purchasing large amounts of stock before you know what will sell.</p></div>
+<div class="card rv"><h3>Verified Supplier Infrastructure</h3><p>Connect your operation with vetted supplier options.</p></div>
+<div class="card rv"><h3>Automation First</h3><p>Reduce repetitive manual tasks wherever automation is technically supported.</p></div>
+<div class="card rv"><h3>Built For Resellers</h3><p>Designed around people who already understand buying, selling and product demand.</p></div>
+<div class="card rv"><h3>Done For You</h3><p>You don’t have to figure out the technical infrastructure alone. BrightBox builds it for you.</p></div></div></div></section>
+
+<section class="alt" id="results2"><div class="w"><div class="head rv"><div class="eye">More Results</div><h2>More stores. More proof.</h2><p class="lead">Dashboards from different stores and periods. Tap any one to open it at full size.</p></div></div>
+<div class="mq r rv"><div class="mt" id="mt2"></div></div><div class="w"><div class="cta rv" style="align-items:center;margin-top:32px"><a href="#apply" class="btn p">Apply For BrightBox</a><span class="trust" style="margin:0">Individual results. No sales or profit is guaranteed.</span></div></div></section>
+
+<section class="alt"><div class="w">
+<div class="head rv"><div class="eye">Qualification</div><h2>BrightBox isn’t for everyone.</h2><p class="lead">We work best with people who take the business seriously. Stores and products must still follow Shopify, payment processor, supplier and applicable legal policies.</p></div>
+<div class="grid g2">
+<div class="card q y rv"><h3>BrightBox is built for you if:</h3><ul><li>You already understand reselling.</li><li>You have experience selling products.</li><li>You want to move away from holding large amounts of inventory.</li><li>You want your own ecommerce storefront.</li><li>You want to reduce repetitive operational work.</li><li>You’re willing to invest in building a real ecommerce operation.</li><li>You’re thinking beyond quick marketplace flips.</li></ul></div>
+<div class="card q n rv"><h3>It may not be right for you if:</h3><ul><li>You’re looking for guaranteed money.</li><li>You don’t want to learn anything about ecommerce.</li><li>You’re unwilling to invest in your business.</li><li>You’re looking for a shortcut with zero effort.</li></ul></div></div></div></section>
+
+<section id="apply"><div class="w" style="max-width:820px">
+<div class="head rv"><div class="eye">Apply</div><h2>Let’s Build Your Next Stage.</h2><p class="lead">Tell us where your business is today and where you want to take it.</p></div>
+<form id="form" class="rv" enctype="multipart/form-data"><div class="fg">
+<div class="f"><label for="n">Full Name</label><input id="n" name="Full Name" required autocomplete="name"></div>
+<div class="f"><label for="e">Email</label><input id="e" type="email" name="email" required autocomplete="email"></div>
+<div class="f"><label for="p">Phone / WhatsApp</label><input id="p" type="tel" name="Phone / WhatsApp" required autocomplete="tel"></div>
+<div class="f"><label for="c">Country</label><input id="c" name="Country" required autocomplete="country-name"></div>
+<div class="f"><label for="pl">Current Selling Platform</label><input id="pl" name="Current Selling Platform" placeholder="e.g. eBay, Vinted, Facebook, local"></div>
+<div class="f"><label for="x">Current Reselling Experience</label><select id="x" name="Experience" required><option value="">Select</option><option>Less than 6 months</option><option>6–12 months</option><option>1–3 years</option><option>3+ years</option></select></div>
+<div class="f full"><label for="pr">What Products Do You Currently Sell?</label><input id="pr" name="Products" required></div>
+<div class="f"><label for="ms">Monthly Sales Range</label><input id="ms" name="Monthly Sales Range" placeholder="Approximate range"></div>
+<div class="f"><label for="hl">How Long Have You Been Reselling?</label><input id="hl" name="Time Reselling"></div>
+<div class="f full"><label for="ch">Current Biggest Challenge</label><input id="ch" name="Biggest Challenge" required></div>
+<div class="f"><label for="inv">Do You Currently Hold Inventory?</label><select id="inv" name="Holds Inventory"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+<div class="f"><label for="ii">Approximate Inventory Investment</label><input id="ii" name="Inventory Investment"></div>
+<div class="f full"><label for="wb">What Are You Looking To Build?</label><input id="wb" name="Looking To Build" required></div>
+<div class="f full"><label for="b">Budget Range</label><select id="b" name="Budget" required><option value="">Select</option><option>Under $500</option><option>$500–$1,000</option><option>$1,000–$2,500</option><option>$2,500–$5,000</option><option>$5,000+</option></select></div>
+<div class="f full"><label for="ai">Additional Information</label><textarea id="ai" name="Additional Information" placeholder="Tell us anything else about your business, goals or current situation."></textarea></div>
+<div class="f full"><label for="fl">Optional: screenshots of your current store, business or results</label><input id="fl" type="file" name="upload" accept="image/*" multiple></div></div>
+<div style="margin-top:24px"><button class="btn p" type="submit" id="sb" style="width:100%">Submit Application</button><div class="err" id="err">Something went wrong. Please try again or contact us on WhatsApp.</div></div></form>
+<div class="ok card" id="ok"><div class="ic">✓</div><h2 style="font-size:32px">Application Received</h2><p style="margin-top:14px">Thanks for applying to BrightBox. Our team will review your information and contact you with the next step.</p></div></div></section>
+
+<section class="alt big"><div class="w"><h2 class="rv">You already know how to resell.<br><span>Now build the infrastructure to scale it.</span></h2>
+<p class="lead rv">Stop letting inventory, marketplace dependency and repetitive operations determine how far your business can go.</p>
+<div class="cta rv"><a href="#apply" class="btn p">Apply For BrightBox</a><a href="#solutions" class="btn s">See The System</a></div></div></section>
+
+<section id="faq"><div class="w" style="max-width:820px"><div class="head rv"><div class="eye">FAQ</div><h2>Questions, answered directly.</h2></div><div class="rv">
+<details><summary>Is BrightBox dropshipping?</summary><p>BrightBox uses supplier-connected ecommerce infrastructure, but the service is positioned as an advanced reselling system rather than a generic dropshipping course or store package.</p></details>
+<details><summary>Do I need to hold inventory?</summary><p>The BrightBox model is designed to reduce the need for the reseller to purchase and store inventory upfront. Supplier arrangements and product availability vary.</p></details>
+<details><summary>Does BrightBox fulfill my orders?</summary><p>No. BrightBox builds the ecommerce infrastructure and automation around the operation. Physical fulfillment is handled by the selected supplier or fulfillment partner.</p></details>
+<details><summary>Do I need Shopify?</summary><p>BrightBox is primarily designed around Shopify storefront infrastructure.</p></details>
+<details><summary>Can I sell on marketplaces too?</summary><p>The system can complement other channels, but BrightBox’s core strategy is to help you establish your own ecommerce storefront rather than depend entirely on third-party marketplaces.</p></details>
+<details><summary>Are profits guaranteed?</summary><p>No. BrightBox does not guarantee sales or profits. Results depend on product selection, pricing, marketing, execution, market conditions and other factors.</p></details>
+<details><summary>Do I need previous reselling experience?</summary><p>BrightBox is primarily designed for people who already have some experience with reselling and want to upgrade their infrastructure.</p></details>
+<details><summary>How much does it cost?</summary><p>Pricing depends on your operation and requirements. Apply and the team will walk you through the options.</p></details></div></div></section>
+
+<footer><div class="w"><div class="fc">
+<div><a href="#top" class="logo" style="color:var(--fg)"><i></i>BrightBox</a><p style="margin-top:12px">Advanced Reselling Infrastructure</p></div>
+<div><h4>Navigate</h4><a href="#solutions">Solutions</a><a href="#how">How It Works</a><a href="#results2">Results</a><a href="#cases">Case Studies</a><a href="#faq">FAQ</a></div>
+<div><h4>Company</h4><a href="#apply">Apply Now</a><a href="https://wa.me/+447838778428">Contact</a></div>
+<div><h4>Social</h4><a href="https://www.tiktok.com/@ecomolq">TikTok</a><a href="https://discord.gg/4mxh55hBrc">Discord</a></div></div>
+<div class="comp"><a href="#" style="display:inline;margin-right:16px">Legal</a><a href="#" style="display:inline;margin-right:16px">Privacy</a><a href="#" style="display:inline">Terms</a>
+<p style="margin-top:14px">BrightBox provides ecommerce infrastructure and implementation services. Product availability, supplier performance, platform policies, payment processing and business results may vary. No sales or profit guarantees are made.</p></div></div></footer>
+
+<script>
+var CASES=[{"tag": "CASE STUDY 01", "name": "Expercom", "niche": "Premium electronics", "title": "From marketplace listings to a trusted Apple-category storefront", "imgs": ["images/expercom-macbook.jpg", "images/expercom-airpods.jpg", "images/expercom-catalog.jpg"], "problem": "High-ticket electronics need a storefront buyers trust, not a third-party marketplace listing.", "solution": "A branded Shopify store with MacBook, AirPods and iPhone collections, sale badges, variant selection and cross-sell blocks.", "snap": "Catalog ranges from AirPods at $109 to MacBook Pro from $2,859.", "chips": ["Collections", "Sale pricing", "Cross-sell"]}, {"tag": "CASE STUDY 02", "name": "CS Perfumes", "niche": "Fragrance", "title": "A collection-led fragrance store organised by scent family", "imgs": ["images/perfumes-oceanic.jpg", "images/perfumes-collections.jpg"], "problem": "Fragrance is browsed by feel. Flat product lists don’t help buyers find their scent.", "solution": "Collections built around scent families (Oceanic, Oriental, Floral, Fruity) with full-bleed product imagery.", "snap": "Four scent-family collections with a clear browse path.", "chips": ["Collections", "Brand imagery"]}, {"tag": "CASE STUDY 03", "name": "Tribe Lacrosse", "niche": "Apparel", "title": "A clean product grid for graphic tri-blend tees", "imgs": ["images/tribe-lacrosse.jpg"], "problem": "Apparel shoppers need fast browsing, clear pricing and size information.", "solution": "A product grid with select-options buttons, size availability labels and a 15% welcome offer.", "snap": "Tees priced at $28 to $30 with a welcome discount.", "chips": ["Product grid", "Welcome offer"]}, {"tag": "CASE STUDY 04", "name": "Vaovac", "niche": "Wellness devices", "title": "A bright, product-first store for massage devices", "imgs": ["images/vaovac.jpg"], "problem": "Wellness devices need a clear promise and instant visual proof of the product.", "solution": "Hero banner, shop-now call to action, sale and sold-out badges and a product-led collection.", "snap": "Devices priced from $34.99 to $69.99 with sale pricing.", "chips": ["Hero banner", "Sale badges"]}, {"tag": "CASE STUDY 05", "name": "Ova Beauty Supply", "niche": "Beauty", "title": "A conversion-focused landing page for a hero product", "imgs": ["images/ova-beauty.jpg"], "problem": "One strong product needs one strong page, not a generic catalog.", "solution": "Landing layout with rating, benefit bullets, free-shipping bar, 30-day guarantee and a 10% welcome offer.", "snap": "Single hero product with a guarantee and a welcome offer.", "chips": ["Landing page", "Guarantee"]}, {"tag": "CASE STUDY 06", "name": "Ammar’s Fragrances", "niche": "Perfume oils", "title": "A luxury-feel storefront for perfume oils", "imgs": ["images/ammars-fragrances.jpg"], "problem": "Premium fragrance needs a brand feel that justifies the price.", "solution": "Gold-and-cream branding, product grid with ratings, wishlist, live chat and a 10% welcome offer.", "snap": "Perfume oils from $49 across a colour-coded range.", "chips": ["Branding", "Live chat", "Wishlist"]}, {"tag": "CASE STUDY 07", "name": "Watches", "niche": "Watches", "title": "A dark, premium watch store with segment promotions", "imgs": ["images/watches-gallery.jpg", "images/watches-flash-sale.jpg", "images/watches-special-edition.jpg", "images/watches-offer.jpg"], "problem": "Watch buyers expect a premium environment before they trust the product.", "solution": "Dark theme, flash-sale banners for men’s, women’s and couple’s watches, a special-edition carousel and a weekly offer banner.", "snap": "Catalog from $116 to $1,669.12 with promotions by segment.", "chips": ["Promotions", "Carousel", "Dark theme"]}];
+var g=document.getElementById("csgrid"),wall=document.getElementById("wall"),lb=document.getElementById("lb"),lbr=document.getElementById("lbr"),lbt=document.getElementById("lbt");
+function openLB(imgs,name,at){lbr.innerHTML="";imgs.forEach(function(s){var i=document.createElement("img");i.src=s;i.alt=name;lbr.appendChild(i)});lbt.textContent=name;lb.classList.add("on");document.body.style.overflow="hidden";lbr.scrollLeft=0;if(at){var t=lbr.children[at];if(t)t.scrollIntoView({inline:"center",block:"nearest"})}}
+function closeLB(){lb.classList.remove("on");document.body.style.overflow=""}
+lb.onclick=function(e){if(e.target===lb||e.target.tagName==="BUTTON")closeLB()};document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLB()});
+CASES.forEach(function(c){var d=document.createElement("article");d.className="card cs rv";
+d.innerHTML='<div class="strip" style="--n:'+Math.min(c.imgs.length,3)+'">'+c.imgs.slice(0,3).map(function(s){return '<img loading="lazy" alt="'+c.name+' store screenshot" src="'+s+'">'}).join("")+'</div><div class="tag">'+c.tag+' · '+c.niche.toUpperCase()+'</div><h3 style="margin-top:8px;font-size:21px">'+c.name+': '+c.title+'</h3><dl><dt>Problem</dt><dd>'+c.problem+'</dd><dt>BrightBox Solution</dt><dd>'+c.solution+'</dd><dt>Storefront Snapshot</dt><dd>'+c.snap+'</dd></dl><div class="chips" style="margin:0 0 20px">'+c.chips.map(function(x){return '<span>'+x+'</span>'}).join("")+'</div><button class="btn s" type="button">View Case Study</button>';
+d.querySelector("button").onclick=function(){openLB(c.imgs,c.name)};d.querySelectorAll(".strip img").forEach(function(im,i){im.onclick=function(){openLB(c.imgs,c.name,i)}});g.appendChild(d);
+c.imgs.forEach(function(s){var f=document.createElement("figure");f.innerHTML='<img loading="lazy" alt="'+c.name+'" src="'+s+'"><figcaption>'+c.name+'</figcaption>';f.firstChild.onclick=function(){openLB(c.imgs,c.name,c.imgs.indexOf(s))};wall.appendChild(f)})});
+var PROOF=[["images/proof-20.jpg", "Total sales $100,282 · last 3 days"], ["images/proof-09.jpg", "Total sales $87,662 · 30 days"], ["images/proof-06.jpg", "Total sales $115,802 · 90 days"], ["images/proof-10.jpg", "Total sales $116,002 · 90 days"], ["images/proof-11.jpg", "Total sales £106.83K · Feb 28 – Mar 5, 2024"], ["images/proof-13.jpg", "Total sales $38,314 · today"], ["images/proof-04.jpg", "Total sales $23,403 · ROAS 5.20"], ["images/proof-03.jpg", "Net profit $8,755 · ROAS 6.76 · today"], ["images/proof-05.jpg", "Total sales $9,395 · 7 days"], ["images/proof-16.jpg", "Total sales $9,815 · 7 days"], ["images/proof-01.jpg", "Total sales $8,394 · yesterday"], ["images/proof-19.jpg", "Total sales $6,045 · Aug 21 – Sep 3, 2026"], ["images/proof-12.jpg", "Conversion rate 5.54% · last 7 days"]];
+(function(){var all=PROOF.map(function(p){return p[0]});function fill(el,a,b){var items=PROOF.slice(a,b);for(var rep=0;rep<4;rep++)items.forEach(function(p,i){var f=document.createElement("figure");f.innerHTML='<img loading="lazy" alt="'+p[1]+'" src="'+p[0]+'"><figcaption>'+p[1]+'</figcaption>';f.firstChild.onclick=function(){openLB(all,"Results: "+p[1],a+i)};el.appendChild(f)})}
+fill(document.getElementById("mt1"),0,6);fill(document.getElementById("mt2"),6,13)})();
+(function(){var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;function fmt(v,e){var s=v.toFixed(+e.dataset.dec);if(!+e.dataset.dec)s=Math.round(v).toLocaleString("en-US");else s=(+s).toLocaleString("en-US",{minimumFractionDigits:+e.dataset.dec,maximumFractionDigits:+e.dataset.dec});return e.dataset.pre+s+e.dataset.suf}
+var o=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;var e=x.target;o.unobserve(e);var to=+e.dataset.to;if(rm){e.textContent=fmt(to,e);return}var t0=performance.now();(function s(t){var p=Math.min((t-t0)/1500,1),k=1-Math.pow(1-p,3);e.textContent=fmt(to*k,e);if(p<1)requestAnimationFrame(s)})(t0)})},{threshold:.4});document.querySelectorAll(".cnt").forEach(function(e){o.observe(e)})})();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll(".rv,.st").forEach(function(el,i){el.style.transitionDelay=(i%3)*70+"ms";io.observe(el)});
+var m=document.getElementById("menu");document.getElementById("ham").onclick=function(){m.classList.toggle("open")};
+m.querySelectorAll("a").forEach(function(a){a.onclick=function(){m.classList.remove("open")}});
+document.getElementById("form").onsubmit=function(ev){ev.preventDefault();var f=ev.target,b=document.getElementById("sb"),er=document.getElementById("err");er.style.display="none";b.disabled=true;b.textContent="Submitting…";
+fetch("https://formspree.io/f/xjykwajn",{method:"POST",body:new FormData(f),headers:{Accept:"application/json"}}).then(function(r){if(!r.ok)throw 0;f.style.display="none";var o=document.getElementById("ok");o.style.display="block";o.scrollIntoView({behavior:"smooth",block:"center"})}).catch(function(){er.style.display="block";b.disabled=false;b.textContent="Submit Application"})};
+</script></body></html>
